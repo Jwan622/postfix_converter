@@ -5,6 +5,7 @@ AB/
 AB+C-
 AB+C*
 ABC+-
+ABC*+DE-/
 AB-C+DEF-+$
 ABCDE-+$*EF*-
 ABC+*CBA-+*

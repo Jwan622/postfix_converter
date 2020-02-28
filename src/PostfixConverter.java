@@ -32,26 +32,36 @@ public class PostfixConverter {
         String postfixLine;
 
         while ((postfixLine = br.readLine()) != null) {
+            System.out.println("Handling Postfix line: " + postfixLine);
+            outputWriter.println("Handling Postfix line: " + postfixLine);
             Cpu cpu = new Cpu();
             char[] postfixChars = postfixLine.trim().toCharArray(); // remove leading and trailing whitespace and split
-                                                                    // into char array
-            for (char c:postfixChars) {
-                String token = Character.toString(c);
-                if (new Operator(token).isOperator()) {
-                    Operator operator = new Operator(token);
-                    System.out.println("operator found: " + token);
+                                                                        // into char array
+            try {
+                for (char c:postfixChars) {
+                    String token = Character.toString(c);
+                    if (new Operator(token).isOperator()) {
+                        Operator operator = new Operator(token);
+                        System.out.println("operator found: " + token);
 
-                    // pop two off the stack if c is an operator. The first popped char is charA
-                    cpu.handleOperator(operator);
-                } else {
-                    System.out.println("character found: " + token);
-                    cpu.handleOperand(token);
+                        // pop two off the stack if c is an operator. The first popped char is charA
+                        cpu.handleOperator(operator);
+                    } else {
+                        System.out.println("character found: " + token);
+                        cpu.handleOperand(token);
+                    }
                 }
-            }
-//            outputWriter.print(cpu.instructionSequence());
-//            outputWriter.print(POSTFIX_DELIMITER);
-                System.out.println(cpu.instructionSequence());
+            } catch (LinkedListEmptyException llee) {
+                System.out.println("PostFix statement is invalid: " + postfixLine);
+                outputWriter.println("PostFix statement is invalid: " + postfixLine);
                 System.out.println(POSTFIX_DELIMITER);
+                outputWriter.println(POSTFIX_DELIMITER);
+                continue;
+            }
+            outputWriter.println(cpu.instructionSequence());
+            outputWriter.println(POSTFIX_DELIMITER);
+            System.out.println(cpu.instructionSequence());
+            System.out.println(POSTFIX_DELIMITER);
         }
 
         outputWriter.close();

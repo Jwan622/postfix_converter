@@ -13,8 +13,8 @@ public class Cpu {
     public void handleOperator(Operator operator) {
         String charA = this.llsForPostfix.pop();
         String charB = this.llsForPostfix.pop();
+        handlePostfix();
         buildInstruction(charA, charB, operator);
-        handlePostfix(charA, charB, operator);
     }
 
     public void handleOperand(String operand) {
@@ -46,13 +46,17 @@ public class Cpu {
         }
     }
 
-    private void handlePostfix(String charA, String charB, Operator operator) {
+    private void handlePostfix() {
         this.llsForPostfix.push(generateTempName());
     }
 
     public StringBuilder instructionSequence() {
         llsForOutput.reverse();
-        return llsForOutput.allData();
+        StringBuilder data = llsForOutput.allData();
+        // to keep this method idempotent, reverse it back to the original state so this method can be called multiple
+        // times and return the same result.
+        llsForOutput.reverse();
+        return data;
     }
 
     public String generateTempName() {

@@ -32,11 +32,12 @@ public class LinkedListStack {
 
     public StringBuilder allData() {
         StringBuilder sequence = new StringBuilder();
+        String separator = "";
         Node temp = this.head;
         while (temp != null) {
             String instruction = temp.data;
-            sequence.append(instruction);
-            sequence.append("\n");
+            sequence.append(separator).append(instruction);
+            separator = "\n";
             temp = temp.next; // this will iterate through the list and print out the data in each node
         }
         return sequence;
