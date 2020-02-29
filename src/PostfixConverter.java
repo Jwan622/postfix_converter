@@ -14,7 +14,7 @@ import java.io.*;
 public class PostfixConverter {
     private static String POSTFIX_DELIMITER = "--------------";
 
-    public static void main(String args[]) throws IOException {
+    public static void main(String args[]) throws IOException, OperatorException {
         // takes the input filename from args[0] which is passed into this program via the command line
         String inputFile = args[0];
         File inputf = new File(inputFile);
@@ -51,16 +51,25 @@ public class PostfixConverter {
                         cpu.handleOperand(token);
                     }
                 }
-            } catch (LinkedListEmptyException llee) {
-                System.out.println("PostFix statement is invalid: " + postfixLine);
-                outputWriter.println("PostFix statement is invalid: " + postfixLine);
+            } catch (LinkedListEmptyException | OperatorException exception) {
+                System.out.println(exception.getMessage() + " " + postfixLine);
+                outputWriter.println(exception.getMessage() + " " + postfixLine);
                 System.out.println(POSTFIX_DELIMITER);
                 outputWriter.println(POSTFIX_DELIMITER);
+                continue;
+            }
+            // if the linkedList that stores the postfix is not empty at the end, then not enough operators
+            if (cpu.postfixNeedsMoreOperators()) {
+                outputWriter.println("Postfix unbalanced. Too few operators");
+                outputWriter.println(POSTFIX_DELIMITER);
+                System.out.println("Postfix unbalanced. Too few operators");
+                System.out.println(postfixLine + " converted to machine instruction and written to " + outputFile);
                 continue;
             }
             outputWriter.println(cpu.instructionSequence());
             outputWriter.println(POSTFIX_DELIMITER);
             System.out.println(cpu.instructionSequence());
+            System.out.println(postfixLine + " converted to machine instruction and written to " + outputFile);
             System.out.println(POSTFIX_DELIMITER);
         }
 

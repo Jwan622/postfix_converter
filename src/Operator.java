@@ -7,7 +7,7 @@ public class Operator {
     private String SUBTRACT = "-";
     private String DIVISION = "/";
     private String MULTIPLY = "*";
-    private String EXPONENT = "^";
+    private String EXPONENT = "$";
 
     Operator(String operator) {
         this.operator = operator;
@@ -33,21 +33,6 @@ public class Operator {
         return this.operator.equals(DIVISION);
     }
 
-    public int precedence() {
-        if (operator.equals(ADD)) return 1;
-        if (operator.equals(SUBTRACT)) return 1;
-        if (operator.equals(DIVISION)) return 2;
-        if (operator.equals(MULTIPLY)) return 2;
-        if (operator.equals(EXPONENT)) return 3;
-        return -1;
-    }
-
-    public int hasPrecedence(Operator op2) {
-        if (this.precedence() > op2.precedence()) return 1;
-        if (this.precedence() < op2.precedence()) return -1;
-        return 0;
-    }
-
     public boolean isOperator() {
         if (!this.operator.equals(ADD) &&
                 !this.operator.equals(SUBTRACT) &&
@@ -59,5 +44,15 @@ public class Operator {
         } else {
             return true;
         }
+    }
+}
+
+/**
+ *
+ * Exception to indicate that LinkedList is empty. Occurs when popping from an empty list.
+ */
+class OperatorException extends RuntimeException {
+    public OperatorException(String msg){
+        super(msg);
     }
 }

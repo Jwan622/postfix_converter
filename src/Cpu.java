@@ -21,8 +21,9 @@ public class Cpu {
         this.llsForPostfix.push(operand);
     }
 
-    private void buildInstruction(String charA, String charB, Operator operator) {
+    private void buildInstruction(String charA, String charB, Operator operator) throws OperatorException {
         String tempVariable = generateTempName();
+
         if (operator.isAdd()) {
             llsForOutput.push("LD " + charB);
             llsForOutput.push("AD " + charA);
@@ -38,11 +39,13 @@ public class Cpu {
             llsForOutput.push("SB " + charA);
             llsForOutput.push("ST " + tempVariable);
             this.callCount++;
-        } else {
+        } else if (operator.isDivision()){
             llsForOutput.push("LD " + charB);
             llsForOutput.push("DV " + charA);
             llsForOutput.push("ST " + tempVariable);
             this.callCount++;
+        } else {
+            throw new OperatorException("operator: " + operator.token() + " not supported");
         }
     }
 
@@ -61,5 +64,9 @@ public class Cpu {
 
     public String generateTempName() {
         return "TEMP" + Integer.toString(this.callCount);
+    }
+
+    public boolean postfixNeedsMoreOperators() {
+        return this.llsForPostfix.size() > 1;
     }
 }
