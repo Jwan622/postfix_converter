@@ -42,6 +42,7 @@ public class LinkedListStack {
     }
 
     public StringBuilder allData() {
+        // iterate through the list, get data and add it to string with new line in between
         StringBuilder sequence = new StringBuilder();
         String separator = "";
         Node temp = this.head;
@@ -55,7 +56,7 @@ public class LinkedListStack {
     }
 
     public void reverse() {
-        // reverse the linked list
+        // reverse the linked list. Needed to display all data with the top being the bottom item on the stack.
         Node current = this.head;
         Node prev = null;
         Node next = null;
@@ -77,10 +78,12 @@ public class LinkedListStack {
  */
 class LinkedListEmptyException extends RuntimeException {
     public LinkedListEmptyException() {
+        // used in this class when popping a stack with no items.
         super();
     }
 
-    public LinkedListEmptyException(String msg){
+    public LinkedListEmptyException(String msg) {
+        // used in the parent class when popping a stack with no items to add a custom message.
         super(msg);
     }
 }

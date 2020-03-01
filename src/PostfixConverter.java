@@ -36,8 +36,10 @@ public class PostfixConverter {
                 // handle empty string case
                 writeToFileAndStdOut("Postfix: " + postfixLine + " , is just an empty string. Doing nothing", POSTFIX_DELIMITER);
             } else if (postfixLine.length() == 1 && Operand.isOperand(postfixLine.toCharArray()[0])) {
+                // handle single operand edge case
                 writeToFileAndStdOut("Postfix " + postfixLine + " , is just a single operand. Doing nothing", POSTFIX_DELIMITER);
             } else {
+                // handle common case scenario.
                 writeToFileAndStdOut("Handling Postfix line: " + postfixLine);
                 Cpu cpu = new Cpu();
                 char[] postfixChars = postfixLine.trim().toCharArray(); // remove leading and trailing whitespace and split
@@ -60,7 +62,7 @@ public class PostfixConverter {
                     writeToFileAndStdOut(exception.getMessage(), POSTFIX_DELIMITER);
                     continue;
                 }
-                // if the linkedList that stores the postfix is not empty at the end, then not enough operators
+                // if the linkedList that stores the postfix has more than 1 item left, then not enough operators
                 if (cpu.postfixNeedsMoreOperators()) {
                     writeToFileAndStdOut("Postfix unbalanced. Too few operators");
                     outputWriter.println(POSTFIX_DELIMITER);
@@ -80,6 +82,7 @@ public class PostfixConverter {
     };
 
     public static void writeToFileAndStdOut(String first, String second) {
+        // writes to stdout and file. This is an overloaded method that can write two different lines to both destinations
         outputWriter.println(first);
         System.out.println(first);
         outputWriter.println(second);
@@ -87,6 +90,7 @@ public class PostfixConverter {
     }
 
     public static void writeToFileAndStdOut(String first) {
+        // writes to stdout and file
         outputWriter.println(first);
         System.out.println(first);
     }

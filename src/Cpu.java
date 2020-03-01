@@ -26,6 +26,8 @@ public class Cpu {
     }
 
     private void buildInstruction(String charA, String charB, Operator operator) throws OperatorException {
+        // remember that the first item popped is A and is passed to the operation instruction
+        // remember that the second item popped is B and passed to the load instruction.
         String tempVariable = generateTempName();
 
         if (operator.isAdd()) {
