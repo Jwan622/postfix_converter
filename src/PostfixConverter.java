@@ -34,16 +34,21 @@ public class PostfixConverter {
             // write some gaurd clauses for edge cases
             if (postfixLine.equals("")) {
                 // handle empty string case
+                writeToFileAndStdOut("Handling Postfix line: " + postfixLine);
                 writeToFileAndStdOut("Postfix: " + postfixLine + " , is just an empty string. Doing nothing", POSTFIX_DELIMITER);
             } else if (postfixLine.length() == 1 && Operand.isOperand(postfixLine.toCharArray()[0])) {
                 // handle single operand edge case
-                writeToFileAndStdOut("Postfix " + postfixLine + " , is just a single operand. Doing nothing", POSTFIX_DELIMITER);
+                writeToFileAndStdOut("Handling Postfix line: " + postfixLine);
+                writeToFileAndStdOut("Postfix unbalanced. Too few operators", POSTFIX_DELIMITER);
+            } else if (postfixLine.length() == 1 && !Operand.isOperand(postfixLine.toCharArray()[0])) {
+                writeToFileAndStdOut("Handling Postfix line: " + postfixLine);
+                writeToFileAndStdOut("Postfix " + postfixLine + ", is just a single invalid operand. Doing nothing", POSTFIX_DELIMITER);
             } else {
                 // handle common case scenario.
                 writeToFileAndStdOut("Handling Postfix line: " + postfixLine);
                 Cpu cpu = new Cpu();
                 char[] postfixChars = postfixLine.trim().toCharArray(); // remove leading and trailing whitespace and split
-                                                                            // into char array
+                                                                        // into char array
                 try {
                     for (char c:postfixChars) {
                         String token = Character.toString(c);
@@ -53,20 +58,21 @@ public class PostfixConverter {
 
                             // pop two off the stack if c is an operator. The first popped char is charA
                             cpu.handleOperator(operator);
-                        } else {
+                        } else if (Operand.isOperand(c)){
                             System.out.println("character found: " + token);
                             cpu.handleOperand(token);
+                        } else {
+                            throw new OperandException("Character is not a valid operand or operator: " + c);
                         }
                     }
-                } catch (LinkedListEmptyException | OperatorException exception) {
+                } catch (LinkedListEmptyException | OperatorException | OperandException exception) {
                     writeToFileAndStdOut(exception.getMessage(), POSTFIX_DELIMITER);
                     continue;
                 }
+
                 // if the linkedList that stores the postfix has more than 1 item left, then not enough operators
                 if (cpu.postfixNeedsMoreOperators()) {
-                    writeToFileAndStdOut("Postfix unbalanced. Too few operators");
-                    outputWriter.println(POSTFIX_DELIMITER);
-                    System.out.println(postfixLine + " converted to machine instruction and written to " + outputFile);
+                    writeToFileAndStdOut("Postfix unbalanced. Too few operators", POSTFIX_DELIMITER);
                     continue;
                 }
                 outputWriter.println(cpu.instructionSequence());

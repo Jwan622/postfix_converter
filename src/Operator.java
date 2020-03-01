@@ -49,7 +49,7 @@ public class Operator {
 
 /**
  *
- * Exception to indicate that LinkedList is empty. Occurs when popping from an empty list.
+ * Exception to indicate that Operator is invalid.
  */
 class OperatorException extends RuntimeException {
     public OperatorException(String msg){

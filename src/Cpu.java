@@ -17,7 +17,7 @@ public class Cpu {
             handlePostfix();
             buildInstruction(charA, charB, operator);
         } catch (LinkedListEmptyException exception) {
-            throw new LinkedListEmptyException("Stack is empty, cannot execute operation: " + operator.token());
+            throw new LinkedListEmptyException("Stack does not have enough items, cannot execute operation: " + operator.token());
         }
     }
 

@@ -83,10 +83,10 @@ Handling Postfix line: ABC+/CBA*+
 Postfix unbalanced. Too few operators
 --------------
 Handling Postfix line: AB-*CBA+-*
-Stack is empty, cannot execute operation: *
+Stack does not have enough items, cannot execute operation: *
 --------------
 Handling Postfix line: ABC-/BA-+/
-Stack is empty, cannot execute operation: /
+Stack does not have enough items, cannot execute operation: /
 --------------
 Handling Postfix line: ABC+$CBA-+*
 operator: $ not supported
@@ -109,33 +109,44 @@ DV TEMP4
 ST TEMP5
 --------------
 Handling Postfix line: -AB
-Stack is empty, cannot execute operation: -
+Stack does not have enough items, cannot execute operation: -
 --------------
 Handling Postfix line: +AB
-Stack is empty, cannot execute operation: +
+Stack does not have enough items, cannot execute operation: +
 --------------
 Handling Postfix line: *AB
-Stack is empty, cannot execute operation: *
+Stack does not have enough items, cannot execute operation: *
 --------------
 Handling Postfix line: /AB
-Stack is empty, cannot execute operation: /
+Stack does not have enough items, cannot execute operation: /
 --------------
 Handling Postfix line: C-AB
-Stack is empty, cannot execute operation: -
+Stack does not have enough items, cannot execute operation: -
 --------------
 Handling Postfix line: C+AB
-Stack is empty, cannot execute operation: +
+Stack does not have enough items, cannot execute operation: +
 --------------
 Handling Postfix line: C*AB
-Stack is empty, cannot execute operation: *
+Stack does not have enough items, cannot execute operation: *
 --------------
 Handling Postfix line: C/AB
-Stack is empty, cannot execute operation: /
+Stack does not have enough items, cannot execute operation: /
 --------------
-Postfix A , is just a single operand. Doing nothing
+Handling Postfix line: A
+Postfix unbalanced. Too few operators
 --------------
+Handling Postfix line: 
 Postfix:  , is just an empty string. Doing nothing
 --------------
 Handling Postfix line: AB
 Postfix unbalanced. Too few operators
+--------------
+Handling Postfix line: AB@
+Character is not a valid operand or operator: @
+--------------
+Handling Postfix line: AB#
+Character is not a valid operand or operator: #
+--------------
+Handling Postfix line: !
+Postfix !, is just a single invalid operand. Doing nothing
 --------------
