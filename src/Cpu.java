@@ -10,11 +10,15 @@ public class Cpu {
         this.llsForOutput = new LinkedListStack();
     }
 
-    public void handleOperator(Operator operator) {
-        String charA = this.llsForPostfix.pop();
-        String charB = this.llsForPostfix.pop();
-        handlePostfix();
-        buildInstruction(charA, charB, operator);
+    public void handleOperator(Operator operator) throws LinkedListEmptyException {
+        try {
+            String charA = this.llsForPostfix.pop();
+            String charB = this.llsForPostfix.pop();
+            handlePostfix();
+            buildInstruction(charA, charB, operator);
+        } catch (LinkedListEmptyException exception) {
+            throw new LinkedListEmptyException("Stack is empty, cannot execute operation: " + operator.token());
+        }
     }
 
     public void handleOperand(String operand) {
@@ -67,6 +71,7 @@ public class Cpu {
     }
 
     public boolean postfixNeedsMoreOperators() {
+        // if the postfix has > 1 left at the end, that means the postfix statement needs more variables.
         return this.llsForPostfix.size() > 1;
     }
 }

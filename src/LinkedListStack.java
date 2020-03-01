@@ -14,7 +14,7 @@ public class LinkedListStack {
     // Pop node from the beginning of the stack
     public String pop() throws LinkedListEmptyException {
         if (head == null) {
-            throw new LinkedListEmptyException("List is empty. Cannot pop");
+            throw new LinkedListEmptyException();
         }
         String data = head.data; // we need to do this because pop returns data
         head = head.next; // set head node to head.next

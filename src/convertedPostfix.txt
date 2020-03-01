@@ -57,10 +57,10 @@ DV TEMP3
 ST TEMP4
 --------------
 Handling Postfix line: AB-C+DEF-+$
-operator: $ not supported AB-C+DEF-+$
+operator: $ not supported
 --------------
 Handling Postfix line: ABCDE-+$*EF*-
-operator: $ not supported ABCDE-+$*EF*-
+operator: $ not supported
 --------------
 Handling Postfix line: ABC+*CBA-+*
 LD B
@@ -83,13 +83,13 @@ Handling Postfix line: ABC+/CBA*+
 Postfix unbalanced. Too few operators
 --------------
 Handling Postfix line: AB-*CBA+-*
-List is empty. Cannot pop AB-*CBA+-*
+Stack is empty, cannot execute operation: *
 --------------
 Handling Postfix line: ABC-/BA-+/
-List is empty. Cannot pop ABC-/BA-+/
+Stack is empty, cannot execute operation: /
 --------------
 Handling Postfix line: ABC+$CBA-+*
-operator: $ not supported ABC+$CBA-+*
+operator: $ not supported
 --------------
 Handling Postfix line: AB0+/CBA+-/
 LD B
@@ -109,34 +109,32 @@ DV TEMP4
 ST TEMP5
 --------------
 Handling Postfix line: -AB
-List is empty. Cannot pop -AB
+Stack is empty, cannot execute operation: -
 --------------
 Handling Postfix line: +AB
-List is empty. Cannot pop +AB
+Stack is empty, cannot execute operation: +
 --------------
 Handling Postfix line: *AB
-List is empty. Cannot pop *AB
+Stack is empty, cannot execute operation: *
 --------------
 Handling Postfix line: /AB
-List is empty. Cannot pop /AB
+Stack is empty, cannot execute operation: /
 --------------
 Handling Postfix line: C-AB
-List is empty. Cannot pop C-AB
+Stack is empty, cannot execute operation: -
 --------------
 Handling Postfix line: C+AB
-List is empty. Cannot pop C+AB
+Stack is empty, cannot execute operation: +
 --------------
 Handling Postfix line: C*AB
-List is empty. Cannot pop C*AB
+Stack is empty, cannot execute operation: *
 --------------
 Handling Postfix line: C/AB
-List is empty. Cannot pop C/AB
+Stack is empty, cannot execute operation: /
 --------------
-Handling Postfix line: 
-
+Postfix A , is just a single operand. Doing nothing
 --------------
-Handling Postfix line: A
-
+Postfix:  , is just an empty string. Doing nothing
 --------------
 Handling Postfix line: AB
 Postfix unbalanced. Too few operators
