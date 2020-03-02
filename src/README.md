@@ -1,8 +1,9 @@
 __Instructions__
 
 - to run the application, run:
-
-`javac PostfixConverter.java LinkedListStack.java Operator.java Operand.java`
+```
+javac PostfixConverter.java LinkedListStack.java Operator.java Operand.java Cpu.java
+```
 
 and then
 
