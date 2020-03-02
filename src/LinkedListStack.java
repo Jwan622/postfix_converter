@@ -1,3 +1,10 @@
+/**
+ *
+ * This is a stack implemented using a linked list. It implements standard methods for a stack and also some optional
+ * ones like reverse and allData. Each node contains data and a next pointer.
+ * @author Jeffrey Wan
+ */
+
 public class LinkedListStack {
     private Node head;  // the head node
 
@@ -33,7 +40,13 @@ public class LinkedListStack {
         return count;
     }
 
-    // Add data to the beginning of the list for demonstrating behaviour of stack
+    /**
+     * This method is used to write to output and the file. It is an overloaded method that takes 2 arguments and writes
+     * each one to the file and stdout. Remember that the first item popped is A and is passed to the operation instruction
+     * remember that the second item popped is B and passed to the load instruction. We lastly increment the
+     * tempVarCounter every time we set a variable so that new temp variables are used when creating the machine instruction.
+     * @param data This is the first item popped off the stack
+     */
     public void push(String data) {
         Node OGHead = head; // we need this because new pushed node needs to point to the OGHead (original gangsta head)
         head = new Node();

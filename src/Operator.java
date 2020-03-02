@@ -1,5 +1,11 @@
 @SuppressWarnings("FieldCanBeLocal")
 
+/**
+ *
+ * This class is used to check if incoming postfix characters are operators and also helps the CPU determine which
+ * machine instruction to write to the output file.
+ * @author Jeffrey Wan
+ */
 public class Operator {
     private String operator;
 
@@ -14,6 +20,7 @@ public class Operator {
     }
 
     public String token() {
+        // needed when the actual token itself and not the class is needed like in the file output
         return this.operator;
     }
 
@@ -36,6 +43,7 @@ public class Operator {
     public boolean isExponent() { return this.operator.equals(EXPONENT); }
 
     public boolean isOperator() {
+        // needed to check if the incoming token is an operator or not.
         return this.operator.equals(ADD) ||
                 this.operator.equals(SUBTRACT) ||
                 this.operator.equals(DIVISION) ||

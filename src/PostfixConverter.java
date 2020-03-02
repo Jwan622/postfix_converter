@@ -7,8 +7,13 @@ Lab 1
 import java.io.*;
 
 /**
- * Example command when running this program: java postfix.PostfixConverter <inputFilename> <outputFilename>
+ * This is the runner class which calls the other classes and reads input/writes to output. It takes in postfix expressions
+ * and outputs machine instructions to an output file. The application utilizes a stack implemented using a linked list
+ * to keep track of the postfix expressions and the output machine instructions.
+ * Example command when running this program: java postfix.PostfixConverter inputFilename outputFilename
  * @author Jeffrey Wan
+ * @version 1.0
+ * @since 2020-02-28
  */
 
 public class PostfixConverter {
@@ -87,6 +92,12 @@ public class PostfixConverter {
         br.close();
     };
 
+    /**
+     * This method is used to write to output and the file. It is an overloaded method that takes 2 arguments and writes
+     * each one to the file and stdout
+     * @param first This is the first string to write to file and stdout
+     * @param second  This is the second string to write to file and stdout
+     */
     public static void writeToFileAndStdOut(String first, String second) {
         // writes to stdout and file. This is an overloaded method that can write two different lines to both destinations
         outputWriter.println(first);
@@ -95,6 +106,10 @@ public class PostfixConverter {
         System.out.println(second);
     }
 
+    /**
+     * This method is used to write the single argument to output and the file.
+     * @param first This is the first string to write to file and stdout
+     */
     public static void writeToFileAndStdOut(String first) {
         // writes to stdout and file
         outputWriter.println(first);
