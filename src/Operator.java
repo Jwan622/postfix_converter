@@ -33,17 +33,14 @@ public class Operator {
         return this.operator.equals(DIVISION);
     }
 
+    public boolean isExponent() { return this.operator.equals(EXPONENT); }
+
     public boolean isOperator() {
-        if (!this.operator.equals(ADD) &&
-                !this.operator.equals(SUBTRACT) &&
-                !this.operator.equals(DIVISION) &&
-                !this.operator.equals(MULTIPLY) &&
-                !this.operator.equals(EXPONENT)
-        ) {
-            return false;
-        } else {
-            return true;
-        }
+        return this.operator.equals(ADD) ||
+                this.operator.equals(SUBTRACT) ||
+                this.operator.equals(DIVISION) ||
+                this.operator.equals(MULTIPLY) ||
+                this.operator.equals(EXPONENT);
     }
 }
 

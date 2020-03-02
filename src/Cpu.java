@@ -45,9 +45,14 @@ public class Cpu {
             llsForOutput.push("SB " + charA);
             llsForOutput.push("ST " + tempVariable);
             this.callCount++;
-        } else if (operator.isDivision()){
+        } else if (operator.isDivision()) {
             llsForOutput.push("LD " + charB);
             llsForOutput.push("DV " + charA);
+            llsForOutput.push("ST " + tempVariable);
+            this.callCount++;
+        } else if (operator.isExponent()) {
+            llsForOutput.push("LD " + charB);
+            llsForOutput.push("EXP " + charA);
             llsForOutput.push("ST " + tempVariable);
             this.callCount++;
         } else {
