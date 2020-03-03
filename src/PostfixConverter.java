@@ -35,6 +35,8 @@ public class PostfixConverter {
 
         String postfixLine;
 
+        // so we first check edge cases like an empty string, single operand, invalid character.
+        // If it is none of those, we will iterate through the postfix expression and convert it to machine instruction
         while ((postfixLine = br.readLine()) != null) {
             // write some gaurd clauses for edge cases
             if (postfixLine.equals("")) {
@@ -80,6 +82,7 @@ public class PostfixConverter {
                     writeToFileAndStdOut("Postfix unbalanced. Too few operators", POSTFIX_DELIMITER);
                     continue;
                 }
+                // the instructionSequence is the machine instruction
                 outputWriter.println(cpu.instructionSequence());
                 System.out.println(cpu.instructionSequence());
                 outputWriter.println(POSTFIX_DELIMITER);

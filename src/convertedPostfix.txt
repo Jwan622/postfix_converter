@@ -18,6 +18,11 @@ LD A
 DV B
 ST TEMP1
 --------------
+Handling Postfix line: ab+
+LD a
+AD b
+ST TEMP1
+--------------
 Handling Postfix line: AB+C-
 LD A
 AD B

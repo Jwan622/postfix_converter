@@ -54,8 +54,11 @@ public class LinkedListStack {
         head.next = OGHead;
     }
 
+    /**
+     *  This method iterates through the stack, gets data, and adds it to string with a new line in between
+     * @return all the data in string format with a newline in between each data.
+     */
     public StringBuilder allData() {
-        // iterate through the list, get data and add it to string with new line in between
         StringBuilder sequence = new StringBuilder();
         String separator = "";
         Node temp = this.head;
